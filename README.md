@@ -2,6 +2,10 @@
 
 Caido Proxy is a browser extension that acts as a configurable proxy switcher to route traffic through Caido cleanly. Designed specifically to toggle off entirely when disabled, ensuring zero conflict with other extensions like ProtonVPN.
 
+<div align="center">
+  <img src="screenshot.png" alt="Caido Proxy Extension UI" width="300" />
+</div>
+
 ---
 ## ✨ Features
 
