@@ -3,7 +3,7 @@
 Proxy is a browser extension for bug bounty hunters and pentesters to route browser traffic through a local interception proxy with strict ON/OFF control. Fast toggling, persistent settings, and clean disable behavior in a couple clicks.
 
 <div align="center">
-  <img src="screenshot.png" alt="Proxy Extension UI" width="320" />
+  <img src="image/screenshot.png" alt="Proxy Extension UI" width="320" />
 </div>
 
 ---
@@ -40,6 +40,10 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 
 ---
 ## 🧾 Changelog
+
+### v1.1.2
+- Moved all image assets into the `image/` folder and updated references.
+- Refreshed release packaging paths.
 
 ### v1.1.1
 - Renamed branding and UI text to **Proxy**.
