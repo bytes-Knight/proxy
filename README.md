@@ -15,7 +15,7 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 - **Persistent Config** – host/port/state stored via `chrome.storage.local`.
 
 ### 🧠 Reliable Behavior
-- Uses fixed proxy rules for HTTP/HTTPS/FTP/WebSocket traffic.
+- Uses fixed proxy rules for all browser traffic with a single proxy profile.
 - Keeps loopback traffic available with `"<-loopback>"` bypass behavior.
 - Fully clears proxy settings when disabled to reduce conflicts with VPN/proxy extensions.
 
@@ -40,6 +40,10 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 
 ---
 ## 🧾 Changelog
+
+### v1.1.3
+- Fixed extension runtime reliability by simplifying permissions and host access scope.
+- Updated background service worker behavior for safer enable/disable handling.
 
 ### v1.1.2
 - Moved all image assets into the `image/` folder and updated references.
