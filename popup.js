@@ -116,9 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
           mode: 'fixed_servers',
           rules: {
             singleProxy: proxyServer,
-            proxyForHttp: proxyServer,
-            proxyForHttps: proxyServer,
-            fallbackProxy: proxyServer,
             bypassList: ['<-loopback>']
           }
         };
