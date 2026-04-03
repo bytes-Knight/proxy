@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         proxyForFtp: proxyServer,
         fallbackProxy: proxyServer,
         // <-loopback is the magic string that tells Chrome NOT to bypass localhost/127.0.0.1
-        // This is heavily required for pentesting local apps with Caido!
+        // This is heavily required for pentesting local apps with the local proxy!
         bypassList: ["<-loopback>"]
       }
     };
@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (chrome.runtime.lastError) {
           console.error("Proxy setting failed: ", chrome.runtime.lastError);
         } else {
-          console.log(`Caido Proxy fully enabled for all traffic at ${message.host}:${message.port}`);
+          console.log(`Proxy fully enabled for all traffic at ${message.host}:${message.port}`);
         }
       }
     );
@@ -40,7 +40,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (chrome.runtime.lastError) {
           console.error("Proxy clearing failed: ", chrome.runtime.lastError);
         } else {
-          console.log("Caido Proxy disabled. Control yielded.");
+          console.log("Proxy disabled. Control yielded.");
         }
       }
     );

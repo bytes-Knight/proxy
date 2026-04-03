@@ -1,71 +1,53 @@
-# 🚀 CAIDO-PROXY-EXTENSION
+# Proxy
 
-Caido Proxy is a browser extension that acts as a configurable proxy switcher to route traffic through Caido cleanly. Designed specifically to toggle off entirely when disabled, ensuring zero conflict with other extensions like ProtonVPN.
+Proxy is a browser extension that lets you quickly route traffic through a local proxy and cleanly disable it when you are done.
 
 <div align="center">
-  <img src="screenshot.png" alt="Caido Proxy Extension UI" width="300" />
+  <img src="screenshot.png" alt="Proxy dark popup UI" width="320" />
 </div>
 
----
-## ✨ Features
+## Features
 
-### Seamless Proxy Routing
-- **Clean Configuration** – Set custom host and port inputs (defaults to 127.0.0.1:8080).
-- **True Disable** – Completely clears proxy settings when turned off, preventing conflicts with VPNs.
+- Compact dark popup UI with clear ON/OFF state.
+- One-click proxy toggle.
+- Configurable host and port (default `127.0.0.1:8080`).
+- Settings persist with `chrome.storage.local`.
+- Proxy settings are fully cleared when disabled to avoid conflicts with VPN/proxy tools.
 
-### 🎨 Simple & Intuitive UI
-- Fast one-click toggle switch for immediate activation.
-- Easily save and retain your preferred configuration.
-- Visual indicators showing current interception state.
+## Usage
 
-### ⚡ Workflow
-- Instantly switch traffic interception on or off.
-- No need to dive into browser network settings manually.
-
----
-## 🛠️ How to Use
-
-1. Click the Caido Proxy extension icon in your browser toolbar.
-2. Enter your Caido host (e.g., `127.0.0.1`) and port (e.g., `8080`).
+1. Click the extension icon.
+2. Set your proxy host and port.
 3. Click **Save Configuration**.
-4. Toggle the switch to **ON** to start routing traffic through Caido.
-5. Toggle to **OFF** when you are done to resume normal browsing (and free up VPN routing).
+4. Toggle proxy **ON** to route traffic through your configured proxy.
+5. Toggle proxy **OFF** to return to direct browsing.
 
----
-## 🧾 Changelog
+## Changelog
 
-### v1.0
-- Initial release.
-- Added custom Host/Port configuration fields.
-- Implemented complete proxy settings wipe upon turning off.
+### v1.1.1
 
----
-## 📦 Installation
+- Removed previous branding and renamed UI/app text to `Proxy`.
+- Updated popup title/header to `Proxy`.
+- Updated `screenshot.png`.
 
-1. Download the repo ZIP and unzip.
-2. Chrome: `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the folder.
-3. Pin the extension from the toolbar puzzle icon.
+### v1.1.0
 
----
-## 🤝 Contributors
+- Redesigned popup to a cleaner, simpler dark theme.
+- Reduced vertical spacing to remove dead area.
+- Improved status copy in the popup.
+- Updated `screenshot.png`.
 
-- **Bytes_Knight** — Creator & Maintainer  
-  Bugcrowd: [@Bytes_Knight](https://bugcrowd.com/Bytes_Knight)
+### v1.0.0
 
----
-## 🧭 Contributing
+- Initial release with configurable host/port and proxy toggle.
 
-1. Fork the repo.
-2. Create a branch: `git checkout -b feature/your-feature-name`.
-3. Make changes and commit: `git commit -m "Add feature"`.
-4. Push: `git push origin feature/your-feature-name`.
-5. Open a PR.
+## Installation
 
----
-## 📜 License
+1. Download or clone this repository.
+2. Open `chrome://extensions`.
+3. Enable **Developer mode**.
+4. Click **Load unpacked** and select this folder.
 
-MIT. See [LICENSE](LICENSE).
+## License
 
----
-
-> 🎯 CAIDO-PROXY-EXTENSION — built by a hunter, for hunters.
+MIT.
