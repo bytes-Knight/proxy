@@ -1,4 +1,4 @@
-# ðŸš€ PROXY-EXTENSION
+# 🚀 PROXY-EXTENSION
 
 Proxy is a browser extension for bug bounty hunters and pentesters to route browser traffic through a local interception proxy with strict ON/OFF control. Fast toggling, persistent settings, and clean disable behavior in a couple clicks.
 
@@ -7,30 +7,30 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 </div>
 
 ---
-## âœ¨ Features
+## ✨ Features
 
 ### Proxy Controls
-- **Quick Toggle** â€“ one-click enable/disable from the popup.
-- **Custom Endpoint** â€“ set host and port (default `127.0.0.1:8080`).
-- **Persistent Config** â€“ host/port/state stored via `chrome.storage.local`.
+- **Quick Toggle** – one-click enable/disable from the popup.
+- **Custom Endpoint** – set host and port (default `127.0.0.1:8080`).
+- **Persistent Config** – host/port/state stored via `chrome.storage.local`.
 
-### ðŸ§  Reliable Behavior
+### 🧠 Reliable Behavior
 - Applies proxy state directly from popup actions with runtime fallback.
 - Keeps loopback traffic available with `"<-loopback>"` bypass behavior.
 - Fully clears proxy settings when disabled to reduce conflicts with VPN/proxy extensions.
 
-### ðŸŽ¨ Dark UI (v1.1+)
+### 🎨 Dark UI (v1.1+)
 - Compact dark popup with improved spacing and clearer hierarchy.
 - Live status badge and large state indicator (`ON` / `OFF`).
 - Cleaner endpoint card with focused Save action.
 
-### âš¡ Workflow
+### ⚡ Workflow
 - Set endpoint once and reuse it.
 - Enable interception instantly when testing.
 - Disable and return to direct browsing immediately.
 
 ---
-## ðŸ› ï¸ How to Use
+## 🛠️ How to Use
 
 1. Click the extension icon in the browser toolbar.
 2. Enter your proxy host and port.
@@ -39,10 +39,10 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 5. Toggle to **OFF** to clear proxy settings and resume normal browsing.
 
 ---
-## ðŸ§¾ Changelog
+## 🧾 Changelog
 
 ### v1.1.5
-- Fixed proxy rule conflict in popup apply flow (singleProxy can not be combined with per-protocol rules).
+- Fixed proxy rule conflict in popup apply flow (`singleProxy` cannot be combined with per-protocol rules).
 - Restored successful ON toggle behavior in Chromium-based browsers.
 
 ### v1.1.4
@@ -71,20 +71,20 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 - Initial release with host/port configuration and proxy toggle.
 
 ---
-## ðŸ“¦ Installation
+## 📦 Installation
 
 1. Download the repo ZIP and unzip.
-2. Chrome: `chrome://extensions` â†’ enable **Developer mode** â†’ **Load unpacked** â†’ select the folder.
+2. Chrome: `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the folder.
 3. Pin the extension from the toolbar puzzle icon.
 
 ---
-## ðŸ¤ Contributors
+## 🤝 Contributors
 
-- **Bytes_Knight** â€” Creator & Maintainer  
+- **Bytes_Knight** — Creator & Maintainer  
   Bugcrowd: [@Bytes_Knight](https://bugcrowd.com/Bytes_Knight)
 
 ---
-## ðŸ§­ Contributing
+## 🧭 Contributing
 
 1. Fork the repo.
 2. Create a branch: `git checkout -b feature/your-feature-name`.
@@ -93,10 +93,10 @@ Proxy is a browser extension for bug bounty hunters and pentesters to route brow
 5. Open a PR.
 
 ---
-## ðŸ“œ License
+## 📜 License
 
 MIT.
 
 ---
 
-> ðŸŽ¯ PROXY-EXTENSION â€” built for hunters and operators.
+> 🎯 PROXY-EXTENSION — built for hunters and operators.
