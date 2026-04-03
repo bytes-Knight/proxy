@@ -1,20 +1,34 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'enableProxy') {
+    const proxyServer = {
+      scheme: "http",
+      host: message.host,
+      port: message.port
+    };
+
     const config = {
       mode: "fixed_servers",
       rules: {
-        singleProxy: {
-          scheme: "http",
-          host: message.host,
-          port: message.port
-        },
-        bypassList: ["<local>"]
+        // Be exhaustive to ensure all types of traffic are caught (WS, WSS, HTTP, HTTPS, FTP)
+        singleProxy: proxyServer,
+        proxyForHttp: proxyServer,
+        proxyForHttps: proxyServer,
+        proxyForFtp: proxyServer,
+        fallbackProxy: proxyServer,
+        // <-loopback is the magic string that tells Chrome NOT to bypass localhost/127.0.0.1
+        // This is heavily required for pentesting local apps with Caido!
+        bypassList: ["<-loopback>"]
       }
     };
+
     chrome.proxy.settings.set(
       { value: config, scope: 'regular' },
       () => {
-        console.log(`Caido Proxy enabled: ${message.host}:${message.port}`);
+        if (chrome.runtime.lastError) {
+          console.error("Proxy setting failed: ", chrome.runtime.lastError);
+        } else {
+          console.log(`Caido Proxy fully enabled for all traffic at ${message.host}:${message.port}`);
+        }
       }
     );
   } else if (message.action === 'disableProxy') {
@@ -23,7 +37,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     chrome.proxy.settings.clear(
       { scope: 'regular' },
       () => {
-        console.log("Caido Proxy disabled. Control yielded.");
+        if (chrome.runtime.lastError) {
+          console.error("Proxy clearing failed: ", chrome.runtime.lastError);
+        } else {
+          console.log("Caido Proxy disabled. Control yielded.");
+        }
       }
     );
   }

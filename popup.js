@@ -1,71 +1,123 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('proxy-toggle');
   const statusText = document.getElementById('status-text');
+  const statusDetail = document.getElementById('status-detail');
+  const statusBadgeText = document.getElementById('status-badge-text');
   const indicator = document.querySelector('.status-indicator');
   const hostInput = document.getElementById('host');
   const portInput = document.getElementById('port');
   const saveBtn = document.getElementById('save-btn');
 
-  // Load saved settings
+  const defaultSaveText = 'Save Configuration';
+
   chrome.storage.local.get(['host', 'port', 'proxyEnabled'], (result) => {
-    if (result.host) hostInput.value = result.host;
-    if (result.port) portInput.value = result.port;
-    if (result.proxyEnabled) {
-      toggle.checked = true;
-      updateUI(true);
+    if (typeof result.host === 'string' && result.host.trim()) {
+      hostInput.value = result.host.trim();
     }
+
+    if (Number.isInteger(result.port) && result.port > 0 && result.port <= 65535) {
+      portInput.value = String(result.port);
+    }
+
+    const settings = normalizeSettings();
+    const enabled = Boolean(result.proxyEnabled);
+
+    toggle.checked = enabled;
+    updateUI(enabled, settings.host, settings.port);
   });
 
-  // Toggle Proxy
-  toggle.addEventListener('change', (e) => {
-    const isEnabled = e.target.checked;
-    const host = hostInput.value.trim() || '127.0.0.1';
-    const port = parseInt(portInput.value, 10) || 8080;
+  toggle.addEventListener('change', (event) => {
+    const isEnabled = event.target.checked;
+    const settings = normalizeSettings();
 
-    updateUI(isEnabled);
+    updateUI(isEnabled, settings.host, settings.port);
 
-    // Tell the background script to change settings
     chrome.runtime.sendMessage({
       action: isEnabled ? 'enableProxy' : 'disableProxy',
-      host: host,
-      port: port
+      host: settings.host,
+      port: settings.port
     });
 
-    // Save state
-    chrome.storage.local.set({ proxyEnabled: isEnabled, host: host, port: port });
+    chrome.storage.local.set({
+      proxyEnabled: isEnabled,
+      host: settings.host,
+      port: settings.port
+    });
   });
 
-  // Save Settings directly
   saveBtn.addEventListener('click', () => {
-    const host = hostInput.value.trim() || '127.0.0.1';
-    const port = parseInt(portInput.value, 10) || 8080;
+    const settings = normalizeSettings();
 
-    chrome.storage.local.set({ host: host, port: port }, () => {
-      saveBtn.innerText = 'Saved!';
-      setTimeout(() => {
-        saveBtn.innerText = 'Save Configuration';
-      }, 1500);
+    chrome.storage.local.set(
+      {
+        host: settings.host,
+        port: settings.port
+      },
+      () => {
+        saveBtn.textContent = 'Saved';
+        saveBtn.classList.add('saved');
 
-      // If already enabled, restart the proxy with new settings
-      if (toggle.checked) {
-        chrome.runtime.sendMessage({
-          action: 'enableProxy',
-          host: host,
-          port: port
-        });
+        setTimeout(() => {
+          saveBtn.textContent = defaultSaveText;
+          saveBtn.classList.remove('saved');
+        }, 1400);
+
+        if (toggle.checked) {
+          updateUI(true, settings.host, settings.port);
+          chrome.runtime.sendMessage({
+            action: 'enableProxy',
+            host: settings.host,
+            port: settings.port
+          });
+        }
       }
+    );
+  });
+
+  [hostInput, portInput].forEach((input) => {
+    input.addEventListener('input', () => {
+      if (!toggle.checked) {
+        return;
+      }
+
+      const settings = normalizeSettings();
+      updateUI(true, settings.host, settings.port);
     });
   });
 
-  function updateUI(isEnabled) {
+  function normalizeSettings() {
+    const host = hostInput.value.trim() || '127.0.0.1';
+    const parsedPort = Number.parseInt(portInput.value, 10);
+
+    const port = Number.isInteger(parsedPort) && parsedPort > 0 && parsedPort <= 65535
+      ? parsedPort
+      : 8080;
+
+    hostInput.value = host;
+    portInput.value = String(port);
+
+    return { host, port };
+  }
+
+  function updateUI(isEnabled, host, port) {
     if (isEnabled) {
-      statusText.innerText = 'PROXY ON';
+      statusText.textContent = 'ON';
+      statusDetail.textContent = `Routing via ${host}:${port}`;
+      statusBadgeText.textContent = 'Active';
+
       statusText.classList.add('active');
+      statusDetail.classList.add('active');
       indicator.classList.add('active');
-    } else {
-      statusText.innerText = 'OFF';
-      statusText.classList.remove('active');
-      indicator.classList.remove('active');
+      return;
     }
+
+    statusText.textContent = 'OFF';
+    statusDetail.textContent = 'Direct connection.';
+    statusBadgeText.textContent = 'Offline';
+
+    statusText.classList.remove('active');
+    statusDetail.classList.remove('active');
+    indicator.classList.remove('active');
   }
 });
+

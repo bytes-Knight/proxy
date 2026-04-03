@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,35 +7,47 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
+  <main class="container">
+    <header class="header">
       <div class="logo-container">
-        <div class="logo"></div>
+        <div class="logo" aria-hidden="true"></div>
         <h1>Caido Proxy</h1>
       </div>
-      <div class="status-indicator"></div>
-    </div>
-    
-    <div class="main-control">
-      <label class="switch">
-        <input type="checkbox" id="proxy-toggle">
-        <span class="slider round"></span>
-      </label>
-      <span id="status-text" class="status-text">OFF</span>
-    </div>
-
-    <div class="config-section">
-      <div class="input-group">
-        <label for="host">Host</label>
-        <input type="text" id="host" value="127.0.0.1" placeholder="127.0.0.1">
+      <div class="status-badge">
+        <span class="status-indicator"></span>
+        <span id="status-badge-text">Offline</span>
       </div>
-      <div class="input-group">
-        <label for="port">Port</label>
-        <input type="number" id="port" value="8080" placeholder="8080">
+    </header>
+
+    <section class="main-control">
+      <div class="state-copy">
+        <p class="state-label">Proxy State</p>
+        <p id="status-text" class="status-text">OFF</p>
+        <p id="status-detail" class="status-detail">Direct connection.</p>
+      </div>
+      <label class="switch" aria-label="Toggle proxy">
+        <input type="checkbox" id="proxy-toggle">
+        <span class="slider"></span>
+      </label>
+    </section>
+
+    <section class="config-section">
+      <div class="section-head">
+        <h2>Proxy Endpoint</h2>
+      </div>
+      <div class="fields">
+        <div class="input-group">
+          <label for="host">Host</label>
+          <input type="text" id="host" value="127.0.0.1" placeholder="127.0.0.1">
+        </div>
+        <div class="input-group">
+          <label for="port">Port</label>
+          <input type="number" id="port" value="8080" placeholder="8080" min="1" max="65535">
+        </div>
       </div>
       <button id="save-btn" class="save-btn">Save Configuration</button>
-    </div>
-  </div>
+    </section>
+  </main>
   <script src="popup.js"></script>
 </body>
 </html>
