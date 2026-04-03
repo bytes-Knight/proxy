@@ -1,53 +1,86 @@
-# Proxy
+# 🚀 PROXY-EXTENSION
 
-Proxy is a browser extension that lets you quickly route traffic through a local proxy and cleanly disable it when you are done.
+Proxy is a browser extension for bug bounty hunters and pentesters to route browser traffic through a local interception proxy with strict ON/OFF control. Fast toggling, persistent settings, and clean disable behavior in a couple clicks.
 
 <div align="center">
-  <img src="screenshot.png" alt="Proxy dark popup UI" width="320" />
+  <img src="screenshot.png" alt="Proxy Extension UI" width="320" />
 </div>
 
-## Features
+---
+## ✨ Features
 
-- Compact dark popup UI with clear ON/OFF state.
-- One-click proxy toggle.
-- Configurable host and port (default `127.0.0.1:8080`).
-- Settings persist with `chrome.storage.local`.
-- Proxy settings are fully cleared when disabled to avoid conflicts with VPN/proxy tools.
+### Proxy Controls
+- **Quick Toggle** – one-click enable/disable from the popup.
+- **Custom Endpoint** – set host and port (default `127.0.0.1:8080`).
+- **Persistent Config** – host/port/state stored via `chrome.storage.local`.
 
-## Usage
+### 🧠 Reliable Behavior
+- Uses fixed proxy rules for HTTP/HTTPS/FTP/WebSocket traffic.
+- Keeps loopback traffic available with `"<-loopback>"` bypass behavior.
+- Fully clears proxy settings when disabled to reduce conflicts with VPN/proxy extensions.
 
-1. Click the extension icon.
-2. Set your proxy host and port.
+### 🎨 Dark UI (v1.1+)
+- Compact dark popup with improved spacing and clearer hierarchy.
+- Live status badge and large state indicator (`ON` / `OFF`).
+- Cleaner endpoint card with focused Save action.
+
+### ⚡ Workflow
+- Set endpoint once and reuse it.
+- Enable interception instantly when testing.
+- Disable and return to direct browsing immediately.
+
+---
+## 🛠️ How to Use
+
+1. Click the extension icon in the browser toolbar.
+2. Enter your proxy host and port.
 3. Click **Save Configuration**.
-4. Toggle proxy **ON** to route traffic through your configured proxy.
-5. Toggle proxy **OFF** to return to direct browsing.
+4. Toggle the switch to **ON** to route traffic through your proxy.
+5. Toggle to **OFF** to clear proxy settings and resume normal browsing.
 
-## Changelog
+---
+## 🧾 Changelog
 
 ### v1.1.1
-
-- Removed previous branding and renamed UI/app text to `Proxy`.
-- Updated popup title/header to `Proxy`.
-- Updated `screenshot.png`.
+- Renamed branding and UI text to **Proxy**.
+- Updated popup title/header and extension naming.
+- Refreshed screenshot.
 
 ### v1.1.0
-
-- Redesigned popup to a cleaner, simpler dark theme.
-- Reduced vertical spacing to remove dead area.
-- Improved status copy in the popup.
-- Updated `screenshot.png`.
+- New compact dark popup UI.
+- Better spacing and status readability.
+- Updated screenshot.
 
 ### v1.0.0
+- Initial release with host/port configuration and proxy toggle.
 
-- Initial release with configurable host/port and proxy toggle.
+---
+## 📦 Installation
 
-## Installation
+1. Download the repo ZIP and unzip.
+2. Chrome: `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the folder.
+3. Pin the extension from the toolbar puzzle icon.
 
-1. Download or clone this repository.
-2. Open `chrome://extensions`.
-3. Enable **Developer mode**.
-4. Click **Load unpacked** and select this folder.
+---
+## 🤝 Contributors
 
-## License
+- **Bytes_Knight** — Creator & Maintainer  
+  Bugcrowd: [@Bytes_Knight](https://bugcrowd.com/Bytes_Knight)
+
+---
+## 🧭 Contributing
+
+1. Fork the repo.
+2. Create a branch: `git checkout -b feature/your-feature-name`.
+3. Make changes and commit: `git commit -m "Add feature"`.
+4. Push: `git push origin feature/your-feature-name`.
+5. Open a PR.
+
+---
+## 📜 License
 
 MIT.
+
+---
+
+> 🎯 PROXY-EXTENSION — built for hunters and operators.
